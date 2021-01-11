@@ -3,7 +3,7 @@ To use as a component of ESP-IDF
 
 ## Installation
 
-- Download and install [esp-idf v4.2 release](https://github.com/espressif/esp-idf)
+- Download and install [esp-idf v4.2 release](https://github.com/espressif/arduino-esp32/tree/idf-release/v4.2)
 - Create blank idf project (from one of the examples)
 - in the project folder, create a folder called components and clone this repository inside
 
@@ -15,6 +15,13 @@ To use as a component of ESP-IDF
     git submodule update --init --recursive && \
     cd ../.. && \
     make menuconfig
+  ```
+  
+  **If the project is already in a git repo, use these instead:**
+
+  ```bash
+  mkdir -p components && \
+  git submodule add https://github.com/summivox/arduino-esp32 arduino --branch mod-idf-v4.2 --recursive
   ```
 
 - ```make menuconfig``` has some Arduino options
