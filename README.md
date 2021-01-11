@@ -1,5 +1,18 @@
+# Fork Notes
+
+This is a fork of https://github.com/espressif/arduino-esp32/tree/idf-release/v4.2 that actually builds successfully when added as a component to a boilerplate project targeting https://github.com/espressif/esp-idf/tree/release/v4.2 .
+
+## Background
+
+`arduino-esp32` can be added as a component to your `esp-idf`-based project. These two libraries are tightly coupled and will not compile unless both are on the same release. However, upstream has several other issues preventing a success build, even in a blank project. This fork fixes this, at the cost of removing `LITTLEFS` and `NetBIOS` libraries.
+
+## Usage
+
+See <docs/esp-idf_component.md> (also updated).
+
+----------------------------------------
+
 # Arduino core for the ESP32
-[![Build Status](https://travis-ci.org/espressif/arduino-esp32.svg?branch=master)](https://travis-ci.org/espressif/arduino-esp32) ![](https://github.com/espressif/arduino-esp32/workflows/ESP32%20Arduino%20CI/badge.svg)
 
 ### Need help or have a question? Join the chat at [![https://gitter.im/espressif/arduino-esp32](https://badges.gitter.im/espressif/arduino-esp32.svg)](https://gitter.im/espressif/arduino-esp32?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 

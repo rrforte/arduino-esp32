@@ -1,26 +1,27 @@
 To use as a component of ESP-IDF
 =================================================
 
-## esp32-arduino-lib-builder
-
-For a simplified method, see [lib-builder](lib_builder.md)
-
 ## Installation
 
-- Download and install [esp-idf](https://github.com/espressif/esp-idf)
+- Download and install [esp-idf v4.2 release](https://github.com/espressif/esp-idf)
 - Create blank idf project (from one of the examples)
 - in the project folder, create a folder called components and clone this repository inside
 
     ```bash
     mkdir -p components && \
     cd components && \
-    git clone https://github.com/espressif/arduino-esp32.git arduino && \
+    git clone -single-branch --branch mod-idf-v4.2 https://github.com/summivox/arduino-esp32.git arduino && \
     cd arduino && \
     git submodule update --init --recursive && \
     cd ../.. && \
     make menuconfig
   ```
+
 - ```make menuconfig``` has some Arduino options
+    - **important: you MUST enable these to build**
+        - mbedTLS: Enable pre-shared-key ciphersuites
+        - bluetooth: At least enable BLE and Bluedroid
+        
     - "Autostart Arduino setup and loop on boot"
         - If you enable this options, your main.cpp should be formated like any other sketch
 
@@ -76,6 +77,10 @@ If you are writing code that does not require Arduino to compile and you want yo
 
 You might notice that Arduino-esp32's `delay()` function will only work in multiples of 10ms. That is because, by default, esp-idf handles task events 100 times per second.
 To fix that behavior you need to set FreeRTOS tick rate to 1000Hz in `make menuconfig` -> `Component config` -> `FreeRTOS` -> `Tick rate`.
+
+## FreeRTOS task watchdog time out
+
+In `menuconfig`, disable "Watch CPU1 Idle Task".
 
 ## Compilation Errors
 
