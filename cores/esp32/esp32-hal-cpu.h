@@ -23,6 +23,10 @@ extern "C" {
 #include <stdbool.h>
 #include <stdlib.h>
 
+#ifndef MHZ
+#define MHZ (1000000)
+#endif  // MHZ
+
 typedef enum { APB_BEFORE_CHANGE, APB_AFTER_CHANGE } apb_change_ev_t;
 
 typedef void (* apb_change_cb_t)(void * arg, apb_change_ev_t ev_type, uint32_t old_apb, uint32_t new_apb);
