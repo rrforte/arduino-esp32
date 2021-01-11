@@ -8,7 +8,7 @@ This is a fork of https://github.com/espressif/arduino-esp32/tree/idf-release/v4
 
 ## Usage
 
-See <docs/esp-idf_component.md> (also updated).
+See [Using as ESP-IDF component](docs/esp-idf_component.md) (also updated).
 
 ----------------------------------------
 
