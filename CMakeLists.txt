@@ -54,30 +54,30 @@ set(LIBRARY_SRCS
   libraries/HTTPUpdate/src/HTTPUpdate.cpp
   libraries/Preferences/src/Preferences.cpp
   libraries/SD_MMC/src/SD_MMC.cpp
-  libraries/SD/src/SD.cpp
-  libraries/SD/src/sd_diskio.cpp
   libraries/SD/src/sd_diskio_crc.c
+  libraries/SD/src/sd_diskio.cpp
+  libraries/SD/src/SD.cpp
   libraries/SimpleBLE/src/SimpleBLE.cpp
-  libraries/SPIFFS/src/SPIFFS.cpp
   libraries/SPI/src/SPI.cpp
+  libraries/SPIFFS/src/SPIFFS.cpp
   libraries/Ticker/src/Ticker.cpp
-  libraries/Update/src/Updater.cpp
   libraries/Update/src/HttpsOTAUpdate.cpp
-  libraries/WebServer/src/WebServer.cpp
-  libraries/WebServer/src/Parsing.cpp
+  libraries/Update/src/Updater.cpp
   libraries/WebServer/src/detail/mimetable.cpp
-  libraries/WiFiClientSecure/src/ssl_client.cpp
-  libraries/WiFiClientSecure/src/WiFiClientSecure.cpp
+  libraries/WebServer/src/Parsing.cpp
+  libraries/WebServer/src/WebServer.cpp
   libraries/WiFi/src/ETH.cpp
+  libraries/WiFi/src/WiFi.cpp
   libraries/WiFi/src/WiFiAP.cpp
   libraries/WiFi/src/WiFiClient.cpp
-  libraries/WiFi/src/WiFi.cpp
   libraries/WiFi/src/WiFiGeneric.cpp
   libraries/WiFi/src/WiFiMulti.cpp
   libraries/WiFi/src/WiFiScan.cpp
   libraries/WiFi/src/WiFiServer.cpp
   libraries/WiFi/src/WiFiSTA.cpp
   libraries/WiFi/src/WiFiUdp.cpp
+  libraries/WiFiClientSecure/src/ssl_client.cpp
+  libraries/WiFiClientSecure/src/WiFiClientSecure.cpp
   libraries/WiFiProv/src/WiFiProv.cpp
   libraries/Wire/src/Wire.cpp
   )
@@ -146,10 +146,16 @@ set(includedirs
   libraries/Wire/src
   )
 
+set(esp_requires
+  esp_http_client
+  esp_https_ota
+  wifi_provisioning
+)
+
 set(srcs ${CORE_SRCS} ${LIBRARY_SRCS} ${BLE_SRCS})
 set(priv_includes cores/esp32/libb64)
 set(requires spi_flash mbedtls mdns esp_adc_cal)
-set(priv_requires fatfs nvs_flash app_update spiffs bootloader_support openssl bt tinyusb main)
+set(priv_requires fatfs nvs_flash app_update spiffs bootloader_support openssl bt tinyusb ${esp_requires})
 
 idf_component_register(INCLUDE_DIRS ${includedirs} PRIV_INCLUDE_DIRS ${priv_includes} SRCS ${srcs} REQUIRES ${requires} PRIV_REQUIRES ${priv_requires})
 
